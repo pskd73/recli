@@ -9,6 +9,12 @@ const renderComp = (comp) => {
     t = TextBox(comp.textbox);
     t.render();
   }
+  if (comp.children) {
+    comp.children.forEach((children) => {
+      const {component, props, mount} = children;
+      mount(component, props);
+    });
+  }
 }
 
 module.exports = {

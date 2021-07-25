@@ -1,19 +1,23 @@
 const { renderComp } = require("./render");
 
 const states = [];
+const compProps = [];
 let idx = 0;
 const idxToComp = {};
 let currentRenderIdx = 0;
 
-const render = (i, Comp) => {
+const render = (i, Comp, props) => {
   if (!Comp) {
     Comp = idxToComp[i];
   } else {
     idxToComp[i] = Comp; 
   }
+  if (props) {
+    compProps[i] = props;
+  }
   currentRenderIdx = i;
   idx = i;
-  const c = Comp();
+  const c = Comp(compProps[i]);
   renderComp(c);
   return c;
 }
@@ -45,8 +49,8 @@ const useEffect = (fn, deps) => {
   idx++;
 }
 
-const mount = (Comp) => {
-  return render(idx, Comp);
+const mount = (Comp, props) => {
+  return render(idx, Comp, props);
 }
 
 module.exports = {

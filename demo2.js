@@ -1,4 +1,4 @@
-const { Table, useState, useEffect, mount } = require("./index");
+const { Table, TableCell, useState, useEffect, mount } = require("./index");
 const term = require("terminal-kit").terminal;
 
 const getAge = (d) => {
@@ -71,11 +71,11 @@ const App = () => {
   return {
     children: Table([
       [
-        { component: Count, props: { count }, w: 10, h: 1 },
-        { component: OddEven, props: { number: count }, w: 10, h: 1}
+        TableCell(Count, {count}, 10, 1),
+        TableCell(OddEven, {number: count}, 10, 1)
       ],
       [
-        { component: DOB, props: { date: new Date(1993, 7, 23) }, w: 20, h: 1}
+        TableCell(DOB, {date: new Date(1993, 7, 23)}, 20, 1),
       ]
     ], x, y)
   }

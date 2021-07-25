@@ -30,7 +30,7 @@ const render = (i, Comp, props) => {
 }
 
 const useState = (initValue) => {
-  let state = states[idx] || initValue;
+  let state = states[idx] === undefined ? initValue : states[idx];
   let _idx = idx;
   const compIdx = currentRenderIdx;
 
@@ -48,12 +48,23 @@ const useState = (initValue) => {
 
 const useEffect = (fn, deps) => {
   const oldDeps = states[idx];
-  if (deps && JSON.stringify(deps) === JSON.stringify(oldDeps)) {
-    return;
+  let changed = true;
+  if (oldDeps) {
+    changed = deps.some((dep, i) => !Object.is(dep, oldDeps[i]));
   }
   states[idx] = deps;
-  fn();
+  if (changed) fn();
   idx++;
+}
+
+const useJsonState = (initValue) => {
+  const [json, setRawJson] = useState(JSON.stringify(initValue));
+
+  const setJson = (json) => {
+    setRawJson(JSON.stringify(json));
+  }
+
+  return [JSON.parse(json), json, setJson];
 }
 
 const mount = (Comp, props) => {
@@ -63,5 +74,6 @@ const mount = (Comp, props) => {
 module.exports = {
   useState,
   useEffect,
+  useJsonState,
   mount
 }

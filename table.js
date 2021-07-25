@@ -11,6 +11,11 @@ const Table = (rows, x, y) => {
   return rowRenders;
 }
 
+const TableCell = (Comp, props, w, h) => {
+  return {component: Comp, props, w, h};
+}
+
 module.exports = {
-  Table
+  Table,
+  TableCell
 };

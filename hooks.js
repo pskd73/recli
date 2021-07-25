@@ -17,8 +17,15 @@ const render = (i, Comp, props) => {
   }
   currentRenderIdx = i;
   idx = i;
+  let _props = undefined;
+  let pos = undefined;
+  if (compProps[i]) {
+    _props = compProps[i];
+    const {x, y, w, h} = _props;
+    pos = {x, y, w, h};
+  }
   const c = Comp(compProps[i]);
-  renderComp(c, mount);
+  renderComp(c, mount, pos);
   return c;
 }
 

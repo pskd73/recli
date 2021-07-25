@@ -18,7 +18,7 @@ const render = (i, Comp, props) => {
   currentRenderIdx = i;
   idx = i;
   const c = Comp(compProps[i]);
-  renderComp(c);
+  renderComp(c, mount);
   return c;
 }
 

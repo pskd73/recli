@@ -48,7 +48,6 @@ const Counter = () => {
     children: [
       {
         component: OddEven,
-        mount,
         props: { number: count, x: x + w, y, w, h}
       }
     ]

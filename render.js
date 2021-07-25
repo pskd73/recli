@@ -1,6 +1,6 @@
 const { TextBox } = require("./textbox");
 
-const renderComp = (comp) => {
+const renderComp = (comp, mount) => {
   if (comp.render) {
     comp.render();
     return;
@@ -11,7 +11,7 @@ const renderComp = (comp) => {
   }
   if (comp.children) {
     comp.children.forEach((children) => {
-      const {component, props, mount} = children;
+      const {component, props} = children;
       mount(component, props);
     });
   }

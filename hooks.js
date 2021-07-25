@@ -1,3 +1,5 @@
+const { renderComp } = require("./render");
+
 const states = [];
 let idx = 0;
 const idxToComp = {};
@@ -12,7 +14,7 @@ const render = (i, Comp) => {
   currentRenderIdx = i;
   idx = i;
   const c = Comp();
-  c.render();
+  renderComp(c);
   return c;
 }
 

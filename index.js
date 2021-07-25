@@ -1,5 +1,4 @@
 const { useState, useEffect, mount } = require("./hooks");
-const { TextBox } = require("./textbox");
 const term = require("terminal-kit").terminal;
 
 const Time = () => {
@@ -10,17 +9,14 @@ const Time = () => {
   }, []);
 
   return ({
-    render() {
-      const t = TextBox({
-        logger: term.yellow.bold.bgRed,
-        text: time,
-        x: 0,
-        y: 0,
-        w: 30,
-        h: 1,
-        align: "left",
-      });
-      t.render();
+    textbox: {
+      logger: term.yellow.bold.bgRed,
+      text: time,
+      x: 0,
+      y: 0,
+      w: 30,
+      h: 1,
+      align: "left",
     }
   });
 }
@@ -33,17 +29,14 @@ const Counter = () => {
   }, [count])
 
   return ({
-    render() {
-      const t = TextBox({
-        logger: term.white.bold.bgGray,
-        text: `${count}`,
-        x: 31,
-        y: 0,
-        w: 30,
-        h: 1,
-        align: "right",
-      });
-      t.render();
+    textbox: {
+      logger: term.white.bold.bgGray,
+      text: `${count}`,
+      x: 31,
+      y: 0,
+      w: 30,
+      h: 1,
+      align: "right",
     }
   });
 }

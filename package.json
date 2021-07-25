@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "terminal-kit": "^2.1.6"
+  }
+}

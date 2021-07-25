@@ -1,6 +1,5 @@
 const term = require("terminal-kit").terminal;
-const { mount } = require("./hooks");
-const { Row } = require("./row");
+const { mount, Row } = require("./index");
 
 const Cell = ({ num }) => {
   return {

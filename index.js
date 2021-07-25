@@ -1,6 +1,11 @@
 const { useState, useEffect, mount } = require("./hooks");
 const term = require("terminal-kit").terminal;
 
+const getAge = (d) => {
+  const diff = new Date().getTime() - d.getTime();
+  return (diff / 31536000000).toFixed(10);
+}
+
 const OddEven = ({ number, x, y, w, h }) => {
   const isEven = number % 2 === 0;
 
@@ -13,6 +18,23 @@ const OddEven = ({ number, x, y, w, h }) => {
     }
   };
 };
+
+const DOB = ({ date, x, y, w, h }) => {
+  const [age, setAge] = useState(getAge(date));
+
+  useEffect(() => {
+    setInterval(() => setAge(getAge(date)), 1000);
+  }, []);
+
+  return {
+    textbox: {
+      logger: term.bgBlack.bold.white,
+      text: `${age}`,
+      x, y, w, h,
+      align: "center"
+    }
+  };
+}
 
 const Counter = () => {
   const [count, setCount] = useState(0);
@@ -49,6 +71,10 @@ const Counter = () => {
       {
         component: OddEven,
         props: { number: count, x: x + w, y, w, h}
+      },
+      {
+        component: DOB,
+        props: { date: new Date(1993, 7, 23), x, y: y + 1, w: w * 2, h}
       }
     ]
   });

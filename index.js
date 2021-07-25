@@ -1,9 +1,13 @@
-const { useState, mount } = require("./hooks");
+const { useState, useEffect, mount } = require("./hooks");
 const { TextBox } = require("./textbox");
 const term = require("terminal-kit").terminal;
 
 const Time = () => {
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState(new Date().toISOString());
+
+  useEffect(() => {
+    setInterval(() => setTime(new Date().toISOString()), 1000);
+  }, []);
 
   return ({
     render() {
@@ -17,9 +21,6 @@ const Time = () => {
         align: "left",
       });
       t.render();
-    },
-    time(t) {
-      setTime(t);
     }
   });
 }
@@ -27,10 +28,14 @@ const Time = () => {
 const Counter = () => {
   const [count, setCount] = useState(0);
 
+  useEffect(() => {
+    setTimeout(() => setCount(count + 1), 1000);
+  }, [count])
+
   return ({
     render() {
       const t = TextBox({
-        logger: term.yellow.bold.bgGray,
+        logger: term.white.bold.bgGray,
         text: `${count}`,
         x: 31,
         y: 0,
@@ -39,9 +44,6 @@ const Counter = () => {
         align: "right",
       });
       t.render();
-    },
-    count(c) {
-      setCount(c);
     }
   });
 }
@@ -49,11 +51,3 @@ const Counter = () => {
 term.clear();
 const time = mount(Time);
 const counter = mount(Counter);
-
-let c = 0;
-
-setInterval(() => {
-  c++;
-  time.time(new Date().toISOString());
-  counter.count(c);
-}, 1000);

@@ -33,11 +33,22 @@ const useState = (initValue) => {
   ]
 }
 
+const useEffect = (fn, deps) => {
+  const oldDeps = states[idx];
+  if (deps && JSON.stringify(deps) === JSON.stringify(oldDeps)) {
+    return;
+  }
+  states[idx] = deps;
+  fn();
+  idx++;
+}
+
 const mount = (Comp) => {
   return render(idx, Comp);
 }
 
 module.exports = {
   useState,
+  useEffect,
   mount
 }

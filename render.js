@@ -1,3 +1,4 @@
+const { terminal } = require("terminal-kit");
 const { TextBox } = require("./textbox");
 
 const renderComp = (comp, mount, position) => {
@@ -18,6 +19,7 @@ const renderComp = (comp, mount, position) => {
       mount(component, props);
     });
   }
+  terminal.moveTo(terminal.width - 1, terminal.height - 1);
 }
 
 module.exports = {

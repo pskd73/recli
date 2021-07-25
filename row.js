@@ -7,9 +7,7 @@ const Row = (cells, x, y) => {
       props: {
         ...props,
         x: prevX,
-        y: y,
-        w,
-        h
+        y, w, h
       }
     }
     prevX += w;

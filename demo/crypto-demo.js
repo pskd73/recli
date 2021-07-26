@@ -1,4 +1,4 @@
-const {useState, useJsonState, useEffect, Table, TableCell, mount} = require("./index");
+const {useState, useJsonState, useEffect, Table, TableCell, mount} = require("../index");
 const WebSocketClient = require("websocket").client;
 const term = require("terminal-kit").terminal;
 

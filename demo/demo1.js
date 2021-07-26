@@ -1,5 +1,5 @@
 const term = require("terminal-kit").terminal;
-const { mount, Table, TableCell } = require("./index");
+const { mount, Table, TableCell } = require("../index");
 
 const Cell = ({ num }) => {
   return {

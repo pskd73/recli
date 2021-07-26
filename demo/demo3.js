@@ -1,5 +1,5 @@
 const { terminal } = require("terminal-kit");
-const {useState, useEffect, mount} = require("./index");
+const {useState, useEffect, mount} = require("../index");
 
 const App = () => {
   const [count, setCount] = useState(0);

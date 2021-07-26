@@ -1,4 +1,4 @@
-const { Table, TableCell, useState, useEffect, mount } = require("./index");
+const { Table, TableCell, useState, useEffect, mount } = require("../index");
 const term = require("terminal-kit").terminal;
 
 const getAge = (d) => {

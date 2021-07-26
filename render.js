@@ -12,6 +12,7 @@ const renderComp = (comp, mount, position) => {
     }
     t = TextBox({...comp.textbox, ...position});
     t.render();
+    terminal.moveTo(terminal.width - 1, terminal.height - 1);
   }
   if (comp.children) {
     comp.children.forEach((children) => {
@@ -19,7 +20,6 @@ const renderComp = (comp, mount, position) => {
       mount(component, props);
     });
   }
-  terminal.moveTo(terminal.width - 1, terminal.height - 1);
 }
 
 module.exports = {

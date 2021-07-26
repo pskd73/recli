@@ -20,10 +20,14 @@ const App = () => {
     textbox: {
       text: `Count: ${count} | OddEven: ${oddEven} | UpdatedAt: ${updatedAt}`,
       logger: terminal.bgBlack.white,
-      align: "left"
+      align: "center"
     },
   }
 };
 
 terminal.clear();
-mount(App, {x: 1, y: 1, w: 50, h: 1});
+mount(App, {
+  x: (terminal.width / 2) - 35, 
+  y: (terminal.height / 2) , 
+  w: 70, h: 1
+});
